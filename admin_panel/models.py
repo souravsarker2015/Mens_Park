@@ -20,3 +20,11 @@ class Product(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Outlet(models.Model):
+    name = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    phone = models.IntegerField()
+    manager_name = models.CharField(max_length=50)
+    outlet_image = models.ImageField(upload_to='outlet_image')
