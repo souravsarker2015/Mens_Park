@@ -28,3 +28,6 @@ class Outlet(models.Model):
     phone = models.IntegerField()
     manager_name = models.CharField(max_length=50)
     outlet_image = models.ImageField(upload_to='outlet_image')
+
+    def __str__(self):
+        return self.name
