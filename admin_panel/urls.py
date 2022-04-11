@@ -14,4 +14,5 @@ urlpatterns = [
     path('tie_details/<slug:data>', views.ties, name='tie_details'),
     path('shoe/', views.shoes, name='shoe'),
     path('shoe_details/<slug:data>', views.shoes, name='shoe_details'),
+    path('search_items', views.search_items, name='search')
 ]

@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from .models import Product, Outlet
 
@@ -85,3 +86,17 @@ def shoes(request, data=None):
         'shoe': shoe,
     }
     return render(request, 'admin_panel/shoes.html', context)
+
+
+def search_items(request):
+    if request.method == 'GET':
+        q = request.GET.get('q')
+        multiple_q = Q(Q(title__icontains=q) | Q(brand__icontains=q))
+        product = Product.objects.filter(multiple_q)
+
+        if len(product) == 0:
+            product = Product.objects.all()
+        context = {
+            'products': product
+        }
+        return render(request, 'admin_panel/search_item.html', context)

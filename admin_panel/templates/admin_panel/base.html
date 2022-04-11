@@ -52,21 +52,21 @@
                         Contract
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
-{#                        {% url 'mobile' %}#}
+                        {#                        {% url 'mobile' %}#}
                         <li><a class="dropdown-item" href="#">Outlet Info</a></li>
                         <li><a class="dropdown-item" href="#">Outlet Locations</a></li>
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-warning" type="submit">S</button>
+            <form class="d-flex" action="{% url 'search' %}">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+                <button class="btn btn-warning" type="submit"><i class="fa fa-search"></i></button>
             </form>
             <div>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown mx-2">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Admin
+                            {{ request.user.username|capfirst }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                             {#                  {% url 'profile' %}#}
