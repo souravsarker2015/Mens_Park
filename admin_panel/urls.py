@@ -17,6 +17,10 @@ urlpatterns = [
     path('shoe/', views.shoes, name='shoe'),
     path('shoe_details/<slug:data>', views.shoes, name='shoe_details'),
     path('search_items', views.search_items, name='search'),
+
+    path('outlet_add/', views.outlet_add, name='outlet_add'),
+    path('all_outlet/', views.outlet_info, name='all_outlet'),
+
     path('registration/', views.registration, name='registration'),
     path('account/login/', auth_view.LoginView.as_view(template_name='admin_panel/login.html', authentication_form=LoginForm), name='login'),
     path('logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'),

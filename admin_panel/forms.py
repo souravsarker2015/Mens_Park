@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from django.contrib.auth.models import User
 from django.utils.translation import gettext, gettext_lazy as _
 
+from admin_panel.models import Outlet
+
 
 class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(label='Enter Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
@@ -67,3 +69,15 @@ class CustomerSetPasswordForm(SetPasswordForm):
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control'}),
     )
+
+
+class OutletForm(forms.ModelForm):
+    class Meta:
+        model = Outlet
+        fields = ['name', 'address', 'phone', 'manager_name']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.NumberInput(attrs={'class': 'form-control'}),
+            'manager_name': forms.TextInput(attrs={'class': 'form-control'}),
+        }

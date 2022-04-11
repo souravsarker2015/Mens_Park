@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render
 
-from .forms import RegistrationForm
+from .forms import RegistrationForm, OutletForm
 from .models import Product, Outlet
 
 
@@ -117,3 +117,31 @@ def registration(request):
         'form': form
     }
     return render(request, 'admin_panel/registration.html', context)
+
+
+def outlet_add(request):
+    if request.method == "POST":
+        form = OutletForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            address = form.cleaned_data['address']
+            phone = form.cleaned_data['phone']
+            manager_name = form.cleaned_data['manager_name']
+            reg = Outlet(name=name, address=address, phone=phone, manager_name=manager_name)
+            reg.save()
+            messages.success(request, 'Outlet has been added !!')
+        return render(request, 'admin_panel/dashboard.html', {'form': form, 'active': 'btn-primary'})
+    else:
+        form = OutletForm()
+        return render(request, 'admin_panel/dashboard.html', {'form': form, 'active': 'btn-primary'})
+
+
+def outlet_info(request):
+    outlets = Outlet.objects.all()
+    count_outlets = len(outlets)
+    context = {
+        'outlets': outlets,
+        'count_outlets': count_outlets,
+        'active': 'btn-primary',
+    }
+    return render(request, 'admin_panel/outlets_info.html', context)
