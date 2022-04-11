@@ -51,7 +51,7 @@
         <div class="owl-carousel" id="slider1">
             {#     {% url 'product-detail' %}#}
             {% for shirt in shirts %}
-                <a href="#" class="btn">
+                <a href="{% url 'product-detail' shirt.id %}" class="btn">
                     <div class="item"><img src="{{ shirt.product_image.url }}" alt="" height="200px"><span class="fw-bold">{{ shirt.title }}</span><br><span class="fs-5">{{ shirt.selling_price }}</span></div>
                 </a>
             {% endfor %}
@@ -69,7 +69,7 @@
         <div class="owl-carousel" id="slider1">
             {#     {% url 'product-detail' %}#}
             {% for pant in pants %}
-                <a href="#" class="btn">
+                <a href="{% url 'product-detail' pant.id %}" class="btn">
                     <div class="item"><img src="{{ pant.product_image.url }}" alt="" height="200px"><span class="fw-bold">{{ pant.title }}</span><br><span class="fs-5">{{ pant.selling_price }}</span></div>
                 </a>
             {% endfor %}
@@ -84,7 +84,7 @@
         <div class="owl-carousel" id="slider1">
             {#     {% url 'product-detail' %}#}
             {% for watch in watches %}
-                <a href="#" class="btn">
+                <a href="{% url 'product-detail' watch.id %}" class="btn">
                     <div class="item"><img src="{{ watch.product_image.url }}" alt="" height="200px"><span class="fw-bold">{{ watch.title }}</span><br><span class="fs-5">{{ watch.selling_price }}</span></div>
                 </a>
             {% endfor %}
@@ -99,7 +99,7 @@
         <div class="owl-carousel" id="slider1">
             {#     {% url 'product-detail' %}#}
             {% for tie in ties %}
-                <a href="#" class="btn">
+                <a href="{% url 'product-detail' tie.id %}" class="btn">
                     <div class="item"><img src="{{ tie.product_image.url }}" alt="" height="200px"><span class="fw-bold">{{ tie.title }}</span><br><span class="fs-5">{{ tie.selling_price }}</span></div>
                 </a>
             {% endfor %}
@@ -114,7 +114,7 @@
         <div class="owl-carousel" id="slider1">
             {#     {% url 'product-detail' %}#}
             {% for shoe in shoes %}
-                <a href="#" class="btn">
+                <a href="{% url 'product-detail' shoe.id %}" class="btn">
                     <div class="item"><img src="{{ shoe.product_image.url }}" alt="" height="200px"><span class="fw-bold">{{ shoe.title }}</span><br><span class="fs-5">{{ shoe.selling_price }}</span></div>
                 </a>
             {% endfor %}

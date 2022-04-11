@@ -33,25 +33,28 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-{#                <li class="nav-item dropdown">#}
-{#                    <a class="nav-link dropdown-toggle text-white" href="#" id="electronicsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
-{#                        Electronics#}
-{#                    </a>#}
-{#                    <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">#}
-                        {#                 {% url 'mobile' %}#}
-{#                        <li><a class="dropdown-item" href="#">Mobile</a></li>#}
-{#                        <li><a class="dropdown-item" href="#">Laptop</a></li>#}
-{#                    </ul>#}
-{#                </li>#}
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="fashionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Fashion
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="fashionDropdown">
-                        <li><a class="dropdown-item" href="#">Shirts</a></li>
-                        <li><a class="dropdown-item" href="#">Pants</a></li>
-                        <li><a class="dropdown-item" href="#">Watch</a></li>
-                        <li><a class="dropdown-item" href="#">Tie</a></li>
+                        <li><a class="dropdown-item" href="{% url 'shirt' %}">Shirts</a></li>
+                        <li><a class="dropdown-item" href="{% url 'pant' %}">Pants</a></li>
+                        <li><a class="dropdown-item" href="{% url 'watch' %}">Watch</a></li>
+                        <li><a class="dropdown-item" href="{% url 'tie' %}">Tie</a></li>
+                        <li><a class="dropdown-item" href="{% url 'shoe' %}">Shoes</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="electronicsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Contract
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
+{#                        {% url 'mobile' %}#}
+                        <li><a class="dropdown-item" href="#">Outlet Info</a></li>
+                        <li><a class="dropdown-item" href="#">Outlet Locations</a></li>
                     </ul>
                 </li>
             </ul>
