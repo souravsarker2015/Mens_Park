@@ -24,7 +24,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">Mens Park</a>
+        <a class="navbar-brand" href="/" style="color: red; font-size: 25px;">Mens Park</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -52,7 +52,6 @@
                         Contract
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
-                        {#                        {% url 'mobile' %}#}
                         <li><a class="dropdown-item" href="#">Outlet Info</a></li>
                         <li><a class="dropdown-item" href="#">Outlet Locations</a></li>
                     </ul>
@@ -70,25 +69,26 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                             {#                  {% url 'profile' %}#}
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+{#                            <li><a class="dropdown-item" href="#">Profile</a></li>#}
                             {#                  {% url 'orders' %}#}
-                            <li><a class="dropdown-item" href="#">Orders</a></li>
+{#                            <li><a class="dropdown-item" href="#">Orders</a></li>#}
                             {#                  {% url 'changepassword' %}#}
-                            <li><a class="dropdown-item" href="#">Change Password</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+{#                            <li><a class="dropdown-item" href="#">Change Password</a></li>#}
+{#                            <li><a class="dropdown-item" href="#">Outlet</a></li>#}
+                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item mx-2">
-                        {#                {% url 'add-to-cart' %}#}
-                        <a href="#" class="nav-link text-white"><span class="badge bg-danger">4</span> Cart </a>
-                    </li>
+                    {#                    <li class="nav-item mx-2">#}
+                    {#                {% url 'add-to-cart' %}#}
+                    {#                        <a href="#" class="nav-link text-white"><span class="badge bg-danger">4</span> Cart </a>#}
+                    {#                    </li>#}
                     <li class="nav-item mx-2">
                         {#                {% url 'login' %}#}
-                        <a href="" class="nav-link text-white">Login</a>
+                        <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
                     </li>
                     <li class="nav-item mx-2">
-                        {#                {% url 'customerregistration' %}#}
-                        <a href="" class="nav-link text-white">Registration</a>
+                        <a href="{% url 'registration' %}" class="nav-link text-white">Registration</a>
                     </li>
                 </ul>
             </div>

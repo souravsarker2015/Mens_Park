@@ -1,5 +1,8 @@
+from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render
+
+from .forms import RegistrationForm
 from .models import Product, Outlet
 
 
@@ -100,3 +103,17 @@ def search_items(request):
             'products': product
         }
         return render(request, 'admin_panel/search_item.html', context)
+
+
+def registration(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            messages.success(request, 'Registration has been done successfully!!!')
+            form.save()
+    else:
+        form = RegistrationForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'admin_panel/registration.html', context)
