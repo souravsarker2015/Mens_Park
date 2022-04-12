@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.db.models import Q
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 from .forms import RegistrationForm, OutletForm
 from .models import Product, Outlet
 
@@ -96,7 +95,6 @@ def search_items(request):
         q = request.GET.get('q')
         multiple_q = Q(Q(title__icontains=q) | Q(brand__icontains=q))
         product = Product.objects.filter(multiple_q)
-
         if len(product) == 0:
             product = Product.objects.all()
         context = {
@@ -120,6 +118,7 @@ def registration(request):
 
 
 def outlet_add(request):
+    # outlets = Outlet.objects.all()
     if request.method == "POST":
         form = OutletForm(request.POST)
         if form.is_valid():
@@ -130,10 +129,39 @@ def outlet_add(request):
             reg = Outlet(name=name, address=address, phone=phone, manager_name=manager_name)
             reg.save()
             messages.success(request, 'Outlet has been added !!')
-        return render(request, 'admin_panel/dashboard.html', {'form': form, 'active': 'btn-primary'})
+            return redirect('outlets_edit_delete')
     else:
         form = OutletForm()
-        return render(request, 'admin_panel/dashboard.html', {'form': form, 'active': 'btn-primary'})
+        return render(request, 'admin_panel/dashboard.html', {'form': form, 'active': 'btn-primary', })
+
+
+def outlet_edit_delete(request):
+    outlets = Outlet.objects.all()
+    return render(request, 'admin_panel/outlet_edit_delete.html', {'outlets': outlets, 'active': 'btn-primary'})
+
+
+def outlet_update(request, pk):
+    if request.method == "POST":
+        pi = Outlet.objects.get(pk=pk)
+        fm = OutletForm(request.POST, instance=pi)
+        if fm.is_valid():
+            messages.success(request, "Outlet has been updated.")
+            fm.save()
+    else:
+        pi = Outlet.objects.get(pk=pk)
+        fm = OutletForm(instance=pi)
+    context = {
+        'form': fm,
+    }
+    return render(request, 'admin_panel/outlet_update.html', context)
+
+
+def outlet_delete(request, pk):
+    if request.method == 'POST':
+        pi = Outlet.objects.get(pk=pk)
+        pi.delete()
+        messages.success(request, "Outlet has been deleted.")
+        return redirect('outlet_add')
 
 
 def outlet_info(request):

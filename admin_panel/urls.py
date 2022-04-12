@@ -19,7 +19,10 @@ urlpatterns = [
     path('search_items', views.search_items, name='search'),
 
     path('outlet_add/', views.outlet_add, name='outlet_add'),
+    path('outlet_update/<int:pk>/', views.outlet_update, name='outlet_update'),
+    path('outlet_delete/<int:pk>/', views.outlet_delete, name='outlet_delete'),
     path('all_outlet/', views.outlet_info, name='all_outlet'),
+    path('outlets_edit_delete/', views.outlet_edit_delete, name='outlets_edit_delete'),
 
     path('registration/', views.registration, name='registration'),
     path('account/login/', auth_view.LoginView.as_view(template_name='admin_panel/login.html', authentication_form=LoginForm), name='login'),
