@@ -19,3 +19,8 @@
  font-size: 24px;
  font-weight: bold;
 }
+
+#map {
+  height: 700%;
+  width: 100%;
+}

@@ -1,8 +1,126 @@
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, OutletForm, ProductForm
 from .models import Product, Outlet
+
+
+@staff_member_required
+def outlet_add(request):
+    # outlets = Outlet.objects.all()
+    if request.method == "POST":
+        form = OutletForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            address = form.cleaned_data['address']
+            phone = form.cleaned_data['phone']
+            manager_name = form.cleaned_data['manager_name']
+            reg = Outlet(name=name, address=address, phone=phone, manager_name=manager_name)
+            reg.save()
+            messages.success(request, 'Outlet has been added !!')
+            return redirect('outlets_edit_delete')
+    else:
+        form = OutletForm()
+        return render(request, 'admin_panel/dashboard.html', {'form': form, 'active': 'btn-primary', })
+
+
+@staff_member_required
+def outlet_edit_delete(request):
+    outlets = Outlet.objects.all()
+    return render(request, 'admin_panel/outlet_edit_delete.html', {'outlets': outlets, 'active': 'btn-primary'})
+
+
+@staff_member_required
+def outlet_update(request, pk):
+    if request.method == "POST":
+        pi = Outlet.objects.get(pk=pk)
+        fm = OutletForm(request.POST, instance=pi)
+        if fm.is_valid():
+            messages.success(request, "Outlet has been updated.")
+            fm.save()
+    else:
+        pi = Outlet.objects.get(pk=pk)
+        fm = OutletForm(instance=pi)
+    context = {
+        'form': fm,
+    }
+    return render(request, 'admin_panel/outlet_update.html', context)
+
+
+@staff_member_required
+def outlet_delete(request, pk):
+    if request.method == 'POST':
+        pi = Outlet.objects.get(pk=pk)
+        pi.delete()
+        messages.success(request, "Outlet has been deleted.")
+        return redirect('outlet_add')
+
+
+def outlet_info(request):
+    outlets = Outlet.objects.all()
+    count_outlets = len(outlets)
+    context = {
+        'outlets': outlets,
+        'count_outlets': count_outlets,
+        'active': 'btn-primary',
+    }
+    return render(request, 'admin_panel/outlets_info.html', context)
+
+
+@staff_member_required
+def product_add(request):
+    # outlets = Outlet.objects.all()
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        print(request.POST)
+        print(request.FILES)
+        if form.is_valid():
+            print('valid')
+            form.save()
+            messages.success(request, 'Product has been added !!')
+            return redirect('product_edit_delete')
+        else:
+            form = ProductForm()
+            print("no entry")
+            return render(request, 'admin_panel/product_add.html', {'form': form, 'active': 'btn-primary', })
+    else:
+        form = ProductForm()
+        print("no entry")
+        return render(request, 'admin_panel/product_add.html', {'form': form, 'active': 'btn-primary', })
+
+
+@staff_member_required
+def product_edit_delete(request):
+    products = Product.objects.all()
+    return render(request, 'admin_panel/product_edit_delete.html', {'products': products, 'active': 'btn-primary'})
+
+
+@staff_member_required
+def product_update(request, pk):
+    if request.method == "POST":
+        pi = Product.objects.get(pk=pk)
+        fm = ProductForm(request.POST, instance=pi)
+        if fm.is_valid():
+            messages.success(request, "Product has been updated.")
+            fm.save()
+    else:
+        pi = Product.objects.get(pk=pk)
+        fm = ProductForm(instance=pi)
+    context = {
+        'form': fm,
+    }
+    return render(request, 'admin_panel/product_update.html', context)
+
+
+@staff_member_required
+def product_delete(request, pk):
+    if request.method == 'POST':
+        pi = Product.objects.get(pk=pk)
+        pi.delete()
+        messages.success(request, "Product has been deleted.")
+        return redirect('outlet_add')
 
 
 def home(request):
@@ -23,7 +141,7 @@ def home(request):
 
 
 def product_details(request, pk):
-    if pk >len(Product.objects.all()):
+    if pk > len(Product.objects.all()):
         return redirect('home')
     product = Product.objects.get(id=pk)
     context = {
@@ -121,114 +239,5 @@ def registration(request):
     return render(request, 'admin_panel/registration.html', context)
 
 
-def outlet_add(request):
-    # outlets = Outlet.objects.all()
-    if request.method == "POST":
-        form = OutletForm(request.POST)
-        print(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            address = form.cleaned_data['address']
-            phone = form.cleaned_data['phone']
-            manager_name = form.cleaned_data['manager_name']
-            reg = Outlet(name=name, address=address, phone=phone, manager_name=manager_name)
-            reg.save()
-            messages.success(request, 'Outlet has been added !!')
-            return redirect('outlets_edit_delete')
-    else:
-        form = OutletForm()
-        return render(request, 'admin_panel/dashboard.html', {'form': form, 'active': 'btn-primary', })
-
-
-def outlet_edit_delete(request):
-    outlets = Outlet.objects.all()
-    return render(request, 'admin_panel/outlet_edit_delete.html', {'outlets': outlets, 'active': 'btn-primary'})
-
-
-def outlet_update(request, pk):
-    if request.method == "POST":
-        pi = Outlet.objects.get(pk=pk)
-        fm = OutletForm(request.POST, instance=pi)
-        if fm.is_valid():
-            messages.success(request, "Outlet has been updated.")
-            fm.save()
-    else:
-        pi = Outlet.objects.get(pk=pk)
-        fm = OutletForm(instance=pi)
-    context = {
-        'form': fm,
-    }
-    return render(request, 'admin_panel/outlet_update.html', context)
-
-
-def outlet_delete(request, pk):
-    if request.method == 'POST':
-        pi = Outlet.objects.get(pk=pk)
-        pi.delete()
-        messages.success(request, "Outlet has been deleted.")
-        return redirect('outlet_add')
-
-
-def outlet_info(request):
-    outlets = Outlet.objects.all()
-    count_outlets = len(outlets)
-    context = {
-        'outlets': outlets,
-        'count_outlets': count_outlets,
-        'active': 'btn-primary',
-    }
-    return render(request, 'admin_panel/outlets_info.html', context)
-
-
-def product_add(request):
-    # outlets = Outlet.objects.all()
-    if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES)
-        print(request.POST)
-        print(request.FILES)
-        if form.is_valid():
-            print('valid')
-            form.save()
-            messages.success(request, 'Product has been added !!')
-            return redirect('product_edit_delete')
-        else:
-            form = ProductForm()
-            print("no entry")
-            return render(request, 'admin_panel/product_add.html', {'form': form, 'active': 'btn-primary', })
-    else:
-        form = ProductForm()
-        print("no entry")
-        return render(request, 'admin_panel/product_add.html', {'form': form, 'active': 'btn-primary', })
-
-
-def product_edit_delete(request):
-    products = Product.objects.all()
-    return render(request, 'admin_panel/product_edit_delete.html', {'products': products, 'active': 'btn-primary'})
-
-
-def product_update(request, pk):
-    if request.method == "POST":
-        pi = Product.objects.get(pk=pk)
-        fm = ProductForm(request.POST, instance=pi)
-        if fm.is_valid():
-            messages.success(request, "Product has been updated.")
-            fm.save()
-    else:
-        pi = Product.objects.get(pk=pk)
-        fm = ProductForm(instance=pi)
-    context = {
-        'form': fm,
-    }
-    return render(request, 'admin_panel/product_update.html', context)
-
-
-def product_delete(request, pk):
-    if request.method == 'POST':
-        pi = Product.objects.get(pk=pk)
-        pi.delete()
-        messages.success(request, "Product has been deleted.")
-        return redirect('outlet_add')
-
-
 def outlet_location(request):
-    return render(request,'admin_panel/outlet_locations.html')
+    return render(request, 'admin_panel/outlet_locations.html')

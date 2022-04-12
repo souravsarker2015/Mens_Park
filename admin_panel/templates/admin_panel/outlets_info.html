@@ -1,6 +1,6 @@
 {% extends 'admin_panel/base.html' %}
 {% load static %}
-{% block title %}Buy Now{% endblock title %}
+{% block title %}Outlet Info{% endblock title %}
 {% block main-content %}
     <div class="container my-5">
         <div class="row">
@@ -8,7 +8,6 @@
 {#            <h3>Welcome {{ request.user.username|capfirst }}</h3>#}
             <div class="col-sm-2 border-end">
                 <ul class="list-unstyled">
-{#                    <li class="d-grid"><a href="{% url 'profile' %}" class="btn">Profile</a></li>#}
                     <li class="d-grid"><a href="{% url 'all_outlet' %}" class="btn {{ active }}">Outlets</a></li>
                 </ul>
             </div>
@@ -25,7 +24,6 @@
                                     <p>Manager Name : {{ outlet.manager_name }}</p>
                                     <p>Address Latitude : {{ outlet.address_latitude }} °</p>
                                     <p>Manager Longitude : {{ outlet.address_longitude }} °</p>
-
                                 </div>
                             </div>
                         </div>
