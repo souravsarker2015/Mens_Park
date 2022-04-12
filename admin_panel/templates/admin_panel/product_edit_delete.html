@@ -9,12 +9,11 @@
                 <ul class="list-unstyled">
                     <li class="d-grid"><a href="{% url 'outlet_add' %}" class="btn">Outlet Add</a></li>
                     <br>
-                    <li class="d-grid"><a href="{% url 'outlets_edit_delete' %}" class="btn {{ active }}">Outlet Details</a></li>
+                    <li class="d-grid"><a href="{% url 'outlets_edit_delete' %}" class="btn">Outlet Details</a></li>
                     <br>
                     <li class="d-grid"><a href="{% url 'product_add' %}" class="btn">Product Add</a></li>
                     <br>
-                    <li class="d-grid"><a href="{% url 'product_edit_delete' %}" class="btn">Products Details</a></li>
-
+                    <li class="d-grid"><a href="{% url 'product_edit_delete' %}" class="btn {{ active }}">Products Details</a></li>
                 </ul>
             </div>
 
@@ -23,27 +22,33 @@
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">NAME</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Manager Name</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">selling_price</th>
+                        <th scope="col">discount_price</th>
+                        <th scope="col">descriptions</th>
+                        <th scope="col">brand</th>
+                        <th scope="col">category</th>
+                        <th scope="col">product_image</th>
                     </tr>
                     </thead>
 
                     <tbody id="tbody">
-                    {% for outlet in outlets %}
+                    {% for product in products %}
                         <tr>
-                            <td>{{ outlet.id }}</td>
-                            <td>{{ outlet.name }}</td>
-                            <td>{{ outlet.address }}</td>
-                            <td>{{ outlet.phone }}</td>
-                            <td>{{ outlet.manager_name }}</td>
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.title }}</td>
+                            <td>{{ product.selling_price }}</td>
+                            <td>{{ product.discount_price }}</td>
+                            <td>{{ product.descriptions }}</td>
+                            <td>{{ product.brand }}</td>
+                            <td>{{ product.category }}</td>
+                            <td>{{ product.product_image }}</td>
                             <td>
-                                <a href="{% url 'outlet_update' outlet.id %}" type="button" class="btn btn-warning btn-sm btn-edit">Edit</a>
-                                <form action="{% url 'outlet_delete' outlet.id %} " method="POST" class="d-inline">
+                                <a href="{% url 'product_update' product.id %}" type="button" class="btn btn-warning btn-sm btn-edit">Edit</a>
+
+                                <form action="{% url 'product_delete' product.id %}" method="POST" class="d-inline">
                                     {% csrf_token %}
                                     <input type="submit" class="btn btn-danger btn-sm btn-del" value="delete">
-
                                 </form>
                             </td>
                         </tr>

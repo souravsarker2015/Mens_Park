@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from django.contrib.auth.models import User
 from django.utils.translation import gettext, gettext_lazy as _
 
-from admin_panel.models import Outlet
+from admin_panel.models import Outlet, Product
 
 
 class RegistrationForm(UserCreationForm):
@@ -30,47 +30,6 @@ class LoginForm(AuthenticationForm):
     )
 
 
-class CustomerPasswordChangeForm(PasswordChangeForm):
-    old_password = forms.CharField(
-        label=_("Old password"),
-        strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'autofocus': True, 'class': 'form-control'}),
-    )
-    new_password1 = forms.CharField(
-        label=_("New password"),
-        strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'autofocus': True, 'class': 'form-control'}),
-        help_text=password_validation.password_validators_help_text_html()
-    )
-    new_password2 = forms.CharField(
-        label=_("Reenter new password"),
-        strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'autofocus': True, 'class': 'form-control'}),
-    )
-
-
-class CustomerPasswordResetForm(PasswordResetForm):
-    email = forms.EmailField(
-        label=_("Email"),
-        max_length=254,
-        widget=forms.EmailInput(attrs={'autocomplete': 'email', 'class': 'form-control'})
-    )
-
-
-class CustomerSetPasswordForm(SetPasswordForm):
-    new_password1 = forms.CharField(
-        label=_("New password"),
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control'}),
-        strip=False,
-        help_text=password_validation.password_validators_help_text_html(),
-    )
-    new_password2 = forms.CharField(
-        label=_("New password confirmation"),
-        strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control'}),
-    )
-
-
 class OutletForm(forms.ModelForm):
     class Meta:
         model = Outlet
@@ -80,4 +39,27 @@ class OutletForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.NumberInput(attrs={'class': 'form-control'}),
             'manager_name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        CATEGORY_CHOICES = (
+            ('S', 'Shirts'),
+            ('P', 'Pants'),
+            ('W', 'Watch'),
+            ('T', 'Tie'),
+            ('SH', 'Shoes'),
+        )
+        model = Product
+        fields = ['title', 'selling_price', 'discount_price', 'descriptions', 'brand', 'category', 'product_image']
+        # fields = "__all__"
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'selling_price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'discount_price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'descriptions': forms.TextInput(attrs={'class': 'form-control'}),
+            'brand': forms.TextInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(choices=CATEGORY_CHOICES, attrs={'class': 'form-control'}),
+            # 'product_image': forms.ImageField(attrs={'class': 'form-control'}),
         }

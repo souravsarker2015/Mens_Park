@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, OutletForm
+from .forms import RegistrationForm, OutletForm, ProductForm
 from .models import Product, Outlet
 
 
@@ -121,6 +121,7 @@ def outlet_add(request):
     # outlets = Outlet.objects.all()
     if request.method == "POST":
         form = OutletForm(request.POST)
+        print(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             address = form.cleaned_data['address']
@@ -173,3 +174,53 @@ def outlet_info(request):
         'active': 'btn-primary',
     }
     return render(request, 'admin_panel/outlets_info.html', context)
+
+
+def product_add(request):
+    # outlets = Outlet.objects.all()
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        print(request.POST)
+        print(request.FILES)
+        if form.is_valid():
+            print('valid')
+            form.save()
+            messages.success(request, 'Product has been added !!')
+            return redirect('home')
+        else:
+            form = ProductForm()
+            print("no entry")
+            return render(request, 'admin_panel/product_add.html', {'form': form, 'active': 'btn-primary', })
+    else:
+        form = ProductForm()
+        print("no entry")
+        return render(request, 'admin_panel/product_add.html', {'form': form, 'active': 'btn-primary', })
+
+
+def product_edit_delete(request):
+    products = Product.objects.all()
+    return render(request, 'admin_panel/product_edit_delete.html', {'products': products, 'active': 'btn-primary'})
+
+
+def product_update(request, pk):
+    if request.method == "POST":
+        pi = Product.objects.get(pk=pk)
+        fm = ProductForm(request.POST, instance=pi)
+        if fm.is_valid():
+            messages.success(request, "Product has been updated.")
+            fm.save()
+    else:
+        pi = Product.objects.get(pk=pk)
+        fm = ProductForm(instance=pi)
+    context = {
+        'form': fm,
+    }
+    return render(request, 'admin_panel/product_update.html', context)
+
+
+def product_delete(request, pk):
+    if request.method == 'POST':
+        pi = Product.objects.get(pk=pk)
+        pi.delete()
+        messages.success(request, "Product has been deleted.")
+        return redirect('outlet_add')
