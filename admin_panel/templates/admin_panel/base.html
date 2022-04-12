@@ -53,7 +53,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
                         <li><a class="dropdown-item" href="{% url 'all_outlet' %}">Outlet Info</a></li>
-                        <li><a class="dropdown-item" href="#">Outlet Locations</a></li>
+                        <li><a class="dropdown-item" href="{% url 'outlet_locations' %}">Outlet Locations</a></li>
                     </ul>
                 </li>
             </ul>
@@ -69,8 +69,12 @@
                                 {{ request.user.username|capfirst }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                                <li><a class="dropdown-item" href="{% url 'outlet_add' %}">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                {% if request.user.is_superuser %}
+                                    <li><a class="dropdown-item" href="{% url 'outlet_add' %}">Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                {% endif %}
                             </ul>
                         </li>
                     {% else %}

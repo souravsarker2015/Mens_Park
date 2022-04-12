@@ -27,6 +27,9 @@ class Outlet(models.Model):
     address = models.CharField(max_length=200)
     phone = models.IntegerField()
     manager_name = models.CharField(max_length=50)
+    address_latitude = models.FloatField(default=0.0)
+    address_longitude = models.FloatField(default=0.0)
+
     # outlet_image = models.ImageField(upload_to='outlet_image', blank=True, null=True)
 
     def __str__(self):

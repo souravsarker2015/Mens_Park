@@ -186,7 +186,7 @@ def product_add(request):
             print('valid')
             form.save()
             messages.success(request, 'Product has been added !!')
-            return redirect('home')
+            return redirect('product_edit_delete')
         else:
             form = ProductForm()
             print("no entry")
@@ -224,3 +224,7 @@ def product_delete(request, pk):
         pi.delete()
         messages.success(request, "Product has been deleted.")
         return redirect('outlet_add')
+
+
+def outlet_location(request):
+    return render(request,'admin_panel/outlet_locations.html')

@@ -28,8 +28,10 @@ urlpatterns = [
     path('product_update/<int:pk>/', views.product_update, name='product_update'),
     path('product_delete/<int:pk>/', views.product_delete, name='product_delete'),
     path('product_edit_delete/', views.product_edit_delete, name='product_edit_delete'),
+    path('outlet_locations/', views.outlet_location, name='outlet_locations'),
 
     path('registration/', views.registration, name='registration'),
     path('account/login/', auth_view.LoginView.as_view(template_name='admin_panel/login.html', authentication_form=LoginForm), name='login'),
     path('logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'),
+
 ]
