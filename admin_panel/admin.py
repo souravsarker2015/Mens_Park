@@ -9,4 +9,4 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Outlet)
 class OutletAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'address', 'phone', 'manager_name']
+    list_display = ['id', 'name', 'address', 'phone', 'manager_name', 'address_latitude', 'address_longitude']

@@ -23,6 +23,8 @@ def home(request):
 
 
 def product_details(request, pk):
+    if pk >len(Product.objects.all()):
+        return redirect('home')
     product = Product.objects.get(id=pk)
     context = {
         'product': product,
@@ -56,7 +58,9 @@ def pants(request, data=None):
 
 def watches(request, data=None):
     if data is None:
+
         watch = Product.objects.filter(category='W')
+
     elif data == 'below':
         watch = Product.objects.filter(category='W').filter(discount_price__lt=20000)
 

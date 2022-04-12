@@ -33,12 +33,14 @@ class LoginForm(AuthenticationForm):
 class OutletForm(forms.ModelForm):
     class Meta:
         model = Outlet
-        fields = ['name', 'address', 'phone', 'manager_name']
+        fields = ['name', 'address', 'phone', 'manager_name','address_latitude','address_longitude']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.NumberInput(attrs={'class': 'form-control'}),
             'manager_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'address_latitude': forms.NumberInput(attrs={'class': 'form-control'}),
+            'address_longitude': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
 
