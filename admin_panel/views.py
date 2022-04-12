@@ -8,10 +8,8 @@ from .models import Product, Outlet
 
 @staff_member_required
 def outlet_add(request):
-    # outlets = Outlet.objects.all()
     if request.method == "POST":
         form = OutletForm(request.POST)
-        print(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             address = form.cleaned_data['address']
@@ -71,23 +69,17 @@ def outlet_info(request):
 
 @staff_member_required
 def product_add(request):
-    # outlets = Outlet.objects.all()
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
-        print(request.POST)
-        print(request.FILES)
         if form.is_valid():
-            print('valid')
             form.save()
             messages.success(request, 'Product has been added !!')
             return redirect('product_edit_delete')
         else:
             form = ProductForm()
-            print("no entry")
             return render(request, 'admin_panel/product_add.html', {'form': form, 'active': 'btn-primary', })
     else:
         form = ProductForm()
-        print("no entry")
         return render(request, 'admin_panel/product_add.html', {'form': form, 'active': 'btn-primary', })
 
 
@@ -176,7 +168,6 @@ def pants(request, data=None):
 
 def watches(request, data=None):
     if data is None:
-
         watch = Product.objects.filter(category='W')
 
     elif data == 'below':
