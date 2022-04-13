@@ -16,16 +16,13 @@
                         </div>
 
                     {% endfor %}
-{#                    <a href="{% provider_login_url 'google' method='oauth2' %}">#}
-{#                        <p class="d-inline">Login with Google</p>#}
-{#                        <img src="{% static 'app/images/google.png' %}" height="32" width="32" alt=""></a><br>#}
-{#                    {% url 'password_reset' %}#}
+
                     <small><a href="#">Forgot Password ?</a></small> <br>
 
                     <input type="submit" class="btn btn-primary mt-4" value="Login">
                     <br>
                     <div class="text-center text-primary fw-bold"><small>New to Mens Park ? <a href="{% url 'registration' %}"
-                                                                                                    class="text-danger">Create an Account</a> </small></div>
+                                                                                               class="text-danger">Create an Account</a> </small></div>
                     {% if form.non_field_errors %}
                         {% for error in form.non_field_errors %}
                             <p class="alert alert-danger my-3">{{ error }}</p>

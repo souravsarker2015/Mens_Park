@@ -239,5 +239,3 @@ def outlet_location(request):
         "count_outlets": count_outlets,
     }
     return render(request, 'admin_panel/outlet_locations.html', context)
-
-
