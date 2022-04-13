@@ -41,8 +41,8 @@ class OutletForm(forms.ModelForm):
             'manager_name': forms.TextInput(attrs={'class': 'form-control'}),
             'address_latitude': forms.NumberInput(attrs={'class': 'form-control'}),
             'address_longitude': forms.NumberInput(attrs={'class': 'form-control'}),
-            'opening_time': forms.TimeInput(format='%H:%M', attrs={'class': 'form-control'}),
-            'closing_time': forms.TimeInput(format='%H:%M', attrs={'class': 'form-control'}),
+            'opening_time': forms.TimeInput(format='%H:%M:%S', attrs={'class': 'form-control'}),
+            'closing_time': forms.TimeInput(format='%H:%M:%S', attrs={'class': 'form-control'}),
             'off_day': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
