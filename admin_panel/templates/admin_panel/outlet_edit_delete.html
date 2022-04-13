@@ -38,6 +38,11 @@
                             <td>{{ outlet.address }}</td>
                             <td>{{ outlet.phone }}</td>
                             <td>{{ outlet.manager_name }}</td>
+                            <td>{{ outlet.opening_time }}</td>
+                            <td>{{ outlet.closing_time }}</td>
+                            <td>{{ outlet.off_day }}</td>
+                            <td>{{ outlet.off_day }}</td>
+                            <td>{{ outlet.outlet_image }}</td>
                             <td>
                                 <a href="{% url 'outlet_update' outlet.id %}" type="button" class="btn btn-warning btn-sm btn-edit">Edit</a>
                                 <form action="{% url 'outlet_delete' outlet.id %} " method="POST" class="d-inline">

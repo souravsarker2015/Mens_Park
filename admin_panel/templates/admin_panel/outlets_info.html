@@ -5,29 +5,39 @@
     <div class="container my-5">
         <div class="row">
             <h3>Total Outlets : {{ count_outlets }}</h3>
-{#            <h3>Welcome {{ request.user.username|capfirst }}</h3>#}
+            {#            <h3>Welcome {{ request.user.username|capfirst }}</h3>#}
             <div class="col-sm-2 border-end">
                 <ul class="list-unstyled">
                     <li class="d-grid"><a href="{% url 'all_outlet' %}" class="btn {{ active }}">Outlets</a></li>
+                    <br>
+                    <li class="d-grid"><a href="{% url 'outlet_locations' %}" class="btn {{ active }}">Outlet Locations</a></li>
+
                 </ul>
             </div>
             <div class="col-sm-9 offset-sm-1">
                 <div class="row">
+                <h1>All Outlets of Mens Park :</h1>
                     {% for outlet in outlets %}
                         <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3>Outlet {{ forloop.counter }}</h3>
+{#                                    <h3>Outlet {{ forloop.counter }}</h3>#}
                                     <p>Name: {{ outlet.name }}</p>
                                     <p>Address : {{ outlet.address }}</p>
                                     <p>Phone : {{ outlet.phone }}</p>
                                     <p>Manager Name : {{ outlet.manager_name }}</p>
-                                    <p>Address Latitude : {{ outlet.address_latitude }} °</p>
-                                    <p>Manager Longitude : {{ outlet.address_longitude }} °</p>
+                                    <p>Opening Time : {{ outlet.opening_time }}</p>
+                                    <p>Closing Time : {{ outlet.closing_time }}</p>
+                                    <p>Off Day : {{ outlet.off_day }}</p>
+{#                                     <input type="image" src="{{ outlet.outlet_image }}" width="48" height="48">#}
+                                    <a href="{% url 'outlet_locations' %}" >View</a>
+{#                                    <p>Address Latitude : {{ outlet.address_latitude }} °</p>#}
+{#                                    <p>Manager Longitude : {{ outlet.address_longitude }} °</p>#}
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
+{#                    <a href="{% url "outlet_locations" %}"> details view</a>#}
                 </div>
             </div>
         </div>

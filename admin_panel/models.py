@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 CATEGORY_CHOICES = (
     ('S', 'Shirts'),
@@ -27,10 +28,12 @@ class Outlet(models.Model):
     address = models.CharField(max_length=200)
     phone = models.IntegerField()
     manager_name = models.CharField(max_length=50)
-    address_latitude = models.FloatField(default=0.0)
-    address_longitude = models.FloatField(default=0.0)
-
-    # outlet_image = models.ImageField(upload_to='outlet_image', blank=True, null=True)
+    address_latitude = models.FloatField(default=0.0, blank=True, null=True)
+    address_longitude = models.FloatField(default=0.0, blank=True, null=True)
+    opening_time = models.TimeField(default=timezone.now, blank=True, null=True)
+    closing_time = models.TimeField(default=timezone.now, blank=True, null=True)
+    off_day = models.CharField(default="Friday", max_length=50, blank=True, null=True)
+    outlet_image = models.ImageField(upload_to='outlet_image', default='outlet_image/menspark_default_hrIJzS0.jpg', blank=True, null=True)
 
     def __str__(self):
         return self.name

@@ -4,45 +4,90 @@
 {% block main-content %}
     <div class="container my-5">
         <div class="row">
-            <h3>Total Outlets : {{ count_outlets }}</h3>
-            {#            <h3>Welcome {{ request.user.username|capfirst }}</h3>#}
-            <div class="col-sm-2 border-end">
+            <div class="col-sm-1 border-end">
                 <ul class="list-unstyled">
                     <li class="d-grid"><a href="{% url 'all_outlet' %}" class="btn {{ active }}">Outlets</a></li>
                 </ul>
             </div>
-            <div class="col-sm-9 offset-sm-1">
-                <div class="row">
-                    {% for outlet in outlets %}
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3>Outlet {{ forloop.counter }}</h3>
-                                    <p>Name: {{ outlet.name }}</p>
-                                    <p>Address : {{ outlet.address }}</p>
-                                    <p>Phone : {{ outlet.phone }}</p>
-                                    <p>Manager Name : {{ outlet.manager_name }}</p>
 
-                                </div>
+            <div class="col-sm-9 offset-sm-1">
+                <h1>Total Outlets : {{ count_outlets }}</h1>
+                <h1>All Outlet Locations : </h1>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card d-inline-block flex" style="padding: 50px; background-color: #BCC6CC; display: inline-block;">
+                            <div class="card-body">
+                                <h1>Dhaka Branch Outlet Location :</h1>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d8680.456987899532!2d90.4126137529269!3d23.829883804160087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x3755c65e78f46ee1%3A0x3e009fd37c89634f!2sNikunja%202%2C%20Dhaka!3m2!1d23.831883599999998!2d90.4178201!4m0!5e0!3m2!1sen!2sbd!4v1649796611449!5m2!1sen!2sbd" width="950" height="430" style="border:0; display: inline-block" allowfullscreen="" loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
-                    {% endfor %}
+
+                        <br>
+                        <br>
+                        <div class="card d-inline-block flex" style="padding: 50px; background-color: #87b1f5; display: inline-block;">
+                            <div class="card-body">
+                                <h1>Jashore Branch Outlet Location :</h1>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d20750.16552174194!2d89.20053272000293!3d23.164882265016054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x39ff1060a7a21d41%3A0x5715f50d9e600766!2sCity%20Plaza%2C%20Jashore!3m2!1d23.1661434!2d89.212738!4m0!5e0!3m2!1sen!2sbd!4v1649796972849!5m2!1sen!2sbd" width="950" height="430" style="border:0; display: inline-block" allowfullscreen="" loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="card d-inline-block flex" style="padding: 50px; background-color: #BCC6CC; display: inline-block;">
+                            <div class="card-body">
+                                <h1>Chittagong Branch Outlet Location :</h1>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d59039.88078918006!2d91.75880518399617!3d22.35391018172879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x30acd8a64095dfd3%3A0x5015cc5bcb6905d9!2sChattogram!3m2!1d22.356851!2d91.7831819!4m0!5e0!3m2!1sen!2sbd!4v1649829201790!5m2!1sen!2sbd" width="950" height="430" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+                        <div class="card d-inline-block flex" style="padding: 50px; background-color: #87b1f5; display: inline-block;">
+                            <div class="card-body">
+                                <h1>Shylet Branch Outlet Location :</h1>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d28952.470301282385!2d91.8562600768624!3d24.895976298461743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x375054d3d270329f%3A0xf58ef93431f67382!2sSylhet!3m2!1d24.8949294!2d91.8687063!4m0!5e0!3m2!1sen!2sbd!4v1649829316139!5m2!1sen!2sbd" width="950" height="430" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+                        <div class="card d-inline-block flex" style="padding: 50px; background-color: #BCC6CC; display: inline-block;">
+                            <div class="card-body">
+                                <h1>Khulna Branch Outlet Location :</h1>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d29414.91898506051!2d89.52985586383352!3d22.84448830524376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x39ff9071cb47152f%3A0xf04b212290718952!2sKhulna!3m2!1d22.845641!2d89.5403279!4m0!5e0!3m2!1sen!2sbd!4v1649829429405!5m2!1sen!2sbd" width="950" height="430" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+                        <div class="card d-inline-block flex" style="padding: 50px; background-color: #87b1f5; display: inline-block;">
+                            <div class="card-body">
+                                <h1>Mymensingh Branch Outlet Location :</h1>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d57974.51560394051!2d90.40568139472236!3d24.747223081390878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x37564f1007ad9b59%3A0x79a59cb060e32d6c!2sMymensingh!3m2!1d24.7471492!2d90.4202734!4m0!5e0!3m2!1sen!2sbd!4v1649829518336!5m2!1sen!2sbd" width="950" height="430" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+
+                    </div>
                 </div>
             </div>
         </div>
-        <div>
-            <div id="map"></div>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXPYvEV2fYVXrpDYeRoPyyS6_EGxYO5Qk&callback=initMap&v=weekly" async></script>
-             <script>
-                let map;
-                function initMap() {
-                    map = new google.maps.Map(document.getElementById("map"), {
-                        center: {lat: 23.811056, lng: 23.811056},
-                        zoom: 8,
-                    });
-                }
-
-            </script>
-        </div>
+        {#        <div>#}
+        {#            <div id="map"></div>#}
+        {#            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXPYvEV2fYVXrpDYeRoPyyS6_EGxYO5Qk&callback=initMap&v=weekly" async></script>#}
+        {#             <script>#}
+        {#                let map;#}
+        {#                function initMap() {#}
+        {#                    map = new google.maps.Map(document.getElementById("map"), {#}
+        {#                        center: {lat: 23.811056, lng: 23.811056},#}
+        {#                        zoom: 8,#}
+        {#                    });#}
+        {#                }#}
+        {##}
+        {#            </script>#}
+        {#        </div>#}
     </div>
 {% endblock main-content %}

@@ -33,7 +33,7 @@ class LoginForm(AuthenticationForm):
 class OutletForm(forms.ModelForm):
     class Meta:
         model = Outlet
-        fields = ['name', 'address', 'phone', 'manager_name','address_latitude','address_longitude']
+        fields = ['name', 'address', 'phone', 'manager_name', 'address_latitude', 'address_longitude', 'opening_time', 'closing_time', 'off_day','outlet_image']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
@@ -41,6 +41,9 @@ class OutletForm(forms.ModelForm):
             'manager_name': forms.TextInput(attrs={'class': 'form-control'}),
             'address_latitude': forms.NumberInput(attrs={'class': 'form-control'}),
             'address_longitude': forms.NumberInput(attrs={'class': 'form-control'}),
+            'opening_time': forms.TimeInput(format='%H:%M', attrs={'class': 'form-control'}),
+            'closing_time': forms.TimeInput(format='%H:%M', attrs={'class': 'form-control'}),
+            'off_day': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
