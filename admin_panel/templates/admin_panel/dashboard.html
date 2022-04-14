@@ -7,6 +7,8 @@
             <h3>Welcome <span class="text-capitalize">{{ request.user }}</span></h3>
             <div class="col-sm-2 border-end">
                 <ul class="list-unstyled">
+                    {#                    <li class="d-grid"><a href="{% url 'all_outlet' %}" class="btn {{ active }}">Outlet Dashboard</a></li>#}
+                    <br>
                     <li class="d-grid"><a href="{% url 'outlet_add' %}" class="btn {{ active }}">Outlet Add</a></li>
                     <br>
                     <li class="d-grid"><a href="{% url 'outlets_edit_delete' %}" class="btn">Outlet Details</a></li>

@@ -27,7 +27,8 @@ def outlet_add(request):
 @staff_member_required
 def outlet_edit_delete(request):
     outlets = Outlet.objects.all()
-    return render(request, 'admin_panel/outlet_edit_delete.html', {'outlets': outlets, 'active': 'btn-primary'})
+    count = len(outlets)
+    return render(request, 'admin_panel/outlet_edit_delete.html', {'outlets': outlets, 'active': 'btn-primary', 'count': count})
 
 
 @staff_member_required
@@ -86,7 +87,8 @@ def product_add(request):
 @staff_member_required
 def product_edit_delete(request):
     products = Product.objects.all()
-    return render(request, 'admin_panel/product_edit_delete.html', {'products': products, 'active': 'btn-primary'})
+    count = len(products)
+    return render(request, 'admin_panel/product_edit_delete.html', {'products': products, 'active': 'btn-primary', 'count': count})
 
 
 @staff_member_required
@@ -239,3 +241,7 @@ def outlet_location(request):
         "count_outlets": count_outlets,
     }
     return render(request, 'admin_panel/outlet_locations.html', context)
+
+
+def about(request):
+    return render(request, 'admin_panel/about_mens_park.html', {'active': 'btn-primary'})

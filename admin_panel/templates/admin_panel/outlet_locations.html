@@ -4,15 +4,19 @@
 {% block main-content %}
     <div class="container my-5">
         <div class="row">
-            <div class="col-sm-1 border-end">
+            <div class="col-sm-2 border-end">
                 <ul class="list-unstyled">
+                    <li class="d-grid"><a href="{% url 'about' %}" class="btn btn-primary">About</a></li>
+                    <br>
                     <li class="d-grid"><a href="{% url 'all_outlet' %}" class="btn {{ active }}">Outlets</a></li>
+                    <br>
+                    <li class="d-grid"><a href="{% url 'outlet_locations' %}" class="btn {{ active }}">Outlet Locations</a></li>
                 </ul>
             </div>
 
             <div class="col-sm-9 offset-sm-1">
-                <h1>Total Outlets : {{ count_outlets }}</h1>
-                <h1>All Outlet Locations : </h1>
+                <h2>Total Outlets : {{ count_outlets }}</h2>
+                <h2>All Outlet Locations : </h2>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="card d-inline-block flex" style="padding: 50px; background-color: #BCC6CC; display: inline-block;">

@@ -1,0 +1,25 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+{% block title %}Outlet Info{% endblock title %}
+{% block main-content %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-sm-2 border-end">
+                <ul class="list-unstyled">
+                    <li class="d-grid"><a href="{% url 'about' %}" class="btn {{ active }}">About</a></li>
+                    <br>
+                    <li class="d-grid"><a href="{% url 'all_outlet' %}" class="btn {{ active }}">Outlets</a></li>
+                    <br>
+                    <li class="d-grid"><a href="{% url 'outlet_locations' %}" class="btn {{ active }}">Outlets Location</a></li>
+
+                </ul>
+            </div>
+            <div class="col-sm-9 offset-sm-1">
+                <div class="row">
+                    <h1 style="text-align: center">Mens Park</h1>
+                    <p style="font-size: 25px; text-align: center">‘Mens Park’ is a Chattagram based menswear brand, they have been selling menswear since 2004. Their first and main outlet is situated at Singapur Bangkok Market, Agrabad, Chattagram. They have several outlets all over Bangladesh. Their theme color is Red & Black.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main-content %}
